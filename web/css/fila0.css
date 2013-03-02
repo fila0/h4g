@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Anchor-Medium';
+    src: url('../fonts/Anchor-Medium.eot');
+    src: local('☺'), url('../fonts/Anchor-Medium.woff') format('woff'), url('../fonts/Anchor-Medium.ttf') format('truetype'), url('../fonts/Anchor-Medium.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 #header {
     background: #EB6F79;
     text-align: center;
@@ -40,9 +49,11 @@
 .slogan {
     background:#89CCC5;
     margin-bottom: 30px;
+
 }
 
 .slogan h2 {
+    font-family: 'Anchor-Medium';
     color: white;
     font-size: 13px;
     font-size: 1.3em;
@@ -53,13 +64,16 @@
 }
 
 .img-explanation img {
-    margin: 0 auto 30px;
+    margin: 0 auto 50px;
 }
-
+ul.tips {
+    margin-bottom: 50px;
+}
 .tips img {
     display: inline;
 }
 .tips li {
+    font-family: 'Anchor-Medium';
     font-size: 12px;
     font-size: 1.2em;
     text-transform: uppercase;
@@ -67,9 +81,120 @@
 }
 
 .contact {
+    margin-top: 50px;
     color: #89CBC7;
+    text-align: center;
+}
+
+.contact p a {
+    background: #89CCC5;
+    font-family: 'Anchor-Medium';
+    font-size: 12px;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 25px;
+}
+
+.copy img {
+    margin: auto;
+}
+
+.developers {
+    text-align: center;
+}
+
+.developers a {
+    display: inline-block;
+    font-family: 'Anchor-Medium';
+    font-size: 10px;
+    font-size: 1em;
+    text-transform: uppercase;
+    color: #222;
+    margin: 0 5px;
+}
+.developers a img {
+    display: inline;
+}
+
+.copy h3 {
+    font-family: 'Anchor-Medium';
+    font-weight: normal;
+    text-align: center;
 }
 
 #footer {
+    font-family: 'Anchor-Medium';
     background: #EB6F79;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.panel {
+    background: url(../img/pastilla_negra.png) no-repeat;
+    max-width: 277px;
+    margin: auto;
+    border: 0;
+    min-height: 250px;
+}
+
+.panel h3 {
+    text-transform: uppercase;
+    color: white;
+    font-size: 12px;
+    font-size: 1.2em;
+    text-align: center;
+    font-weight: normal;
+}
+
+.panel.where img {
+    display: inline-block;margin: 0 5px;
+}
+
+p.center {
+    text-align: center;
+}
+
+.panel p {
+    text-transform: uppercase;
+    color: white;
+    font-size: 8px;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.panel h3 {
+    text-align: center;
+}
+
+#footer input {
+    display: inline;
+    width: 120px;
+    margin: 0 5px;
+    padding: 0 10px;
+    text-transform: none;
+    background: #f3f3f3;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 3px;
+}
+#footer form {
+    margin: 20px 0;
+}
+#footer input[type="submit"] {
+    background: url(../img/icon_candado.png) no-repeat;
+    border: 0;
+    height: 22px;
+    width: 18px;
+    padding: 0;
+    margin: 0;
+    text-indent: -9999px;
+}
+
+footer2 {
+    background:#89CCC5;
+    color: white;
+    font-family: 'Anchor-Medium';
+    text-transform: uppercase;
 }
