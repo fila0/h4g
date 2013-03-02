@@ -4,13 +4,13 @@
 <div class="slider">
     <ul data-orbit>
       <li>
-        <img src="/img/imagen_loreak_1.jpg" />
+        <img src="{{ constant('ROOT_URI') }}/img/imagen_loreak_1.jpg" />
       </li>
       <li>
-        <img src="/img/imagen_loreak_2.jpg" />
+        <img src="{{ constant('ROOT_URI') }}/img/imagen_loreak_2.jpg" />
       </li>
       <li>
-        <img src="/img/imagen_loreak_3.jpg" />
+        <img src="{{ constant('ROOT_URI') }}/img/imagen_loreak_3.jpg" />
       </li>
     </ul>
 </div>
@@ -24,7 +24,7 @@
 <div class="img-explanation">
     <div class="row">
         <div class="large-12 columns">
-            <img src="/img/filacero_funcionamiento.png" />
+            <img src="{{ constant('ROOT_URI') }}/img/filacero_funcionamiento.png" />
         </div>
     </div>
 </div>
@@ -60,9 +60,9 @@
 <div class="row">
     <div class="large-12 columns">
         <ul class="tips no-bullet">
-            <li><img src="/img/icon_flecha.png" /> Tú eliges el proyecto social al que donan tus usuarios</li>
-            <li><img src="/img/icon_flecha.png" /> Ellos tienen la oportunidad de contribuir con un euro</li>
-            <li><img src="/img/icon_flecha.png" /> Nosotros comunicamos lo que hemos conseguido entre todos</li>
+            <li><img src="{{ constant('ROOT_URI') }}/img/icon_flecha.png" /> Tú eliges el proyecto social al que donan tus usuarios</li>
+            <li><img src="{{ constant('ROOT_URI') }}/img/icon_flecha.png" /> Ellos tienen la oportunidad de contribuir con un euro</li>
+            <li><img src="{{ constant('ROOT_URI') }}/img/icon_flecha.png" /> Nosotros comunicamos lo que hemos conseguido entre todos</li>
         </ul>
     </div>
 </div>
@@ -71,17 +71,18 @@
         <div class="row">
             <div class="large-4 columns">
                 <h3>Un proyecto de </h3>
-                <img src="/img/logo_fundacionfilacero.png" alt="Fila Cero" />
+                <img src="{{ constant('ROOT_URI') }}/img/logo_fundacionfilacero.png" alt="Fila Cero" />
             </div>
             <div class="large-4 columns">
                 <h3>Desarrollado por</h3>
-                <img src="/img/icon_EQUIPO.png" alt="Fila Cero" />
+                <img src="{{ constant('ROOT_URI') }}/img/icon_EQUIPO.png" alt="Fila Cero" />
             </div>
             <div class="large-4 columns">
                 <h3>Durante</h3>
-                <img src="/img/logo_hackforgood.png" alt="Fila Cero" />
+                <img src="{{ constant('ROOT_URI') }}/img/logo_hackforgood.png" alt="Fila Cero" />
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}

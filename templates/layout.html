@@ -7,14 +7,14 @@
   <meta name="viewport" content="width=device-width" />
   <title>{% block title 'Fila0 API' %}</title>
 
-  <link rel="stylesheet" href="/css/normalize.css" />
+  <link rel="stylesheet" href="{{ constant('ROOT_URI') }}/css/normalize.css" />
 
-  <link rel="stylesheet" href="/css/foundation.css" />
+  <link rel="stylesheet" href="{{ constant('ROOT_URI') }}/css/foundation.css" />
 
-  <link rel="stylesheet" href="/css/fila0.css" />
+  <link rel="stylesheet" href="{{ constant('ROOT_URI') }}/css/fila0.css" />
 
 
-  <script src="/js/vendor/custom.modernizr.js"></script>
+  <script src="{{ constant('ROOT_URI') }}/js/vendor/custom.modernizr.js"></script>
 
 </head>
 <body>
@@ -22,28 +22,32 @@
     <header id="header">
         <div class="row">
             <div class="large-12 columns">
-                <h1><img src="/img/logo_filacero_cabezera.png" alt="Fila Cero" /></h1>
+                <h1><img src="{{ constant('ROOT_URI') }}/img/logo_filacero_cabezera.png" alt="Fila Cero" /></h1>
             </div>
         </div>
     </header>
 
     {% block content %}{% endblock %}
 
-    <footer>
+    <footer id="footer">
         <div class="row">
             <div class="large-12 columns">
-                <p>Footer!!</p>
+                <form action="{{ path('dashboard_login_check') }}" method="post">
+                    <input type="text" name="_username" value="" />
+                    <input type="password" name="_password" value="" />
+                    <input type="submit" />
+                </form>
             </div>
         </div>
     </footer>
 
   <script>
   document.write('<script src=' +
-  ('__proto__' in {} ? '/js/vendor/zepto' : '/js/vendor/jquery') +
+  ('__proto__' in {} ? '{{ constant('ROOT_URI') }}/js/vendor/zepto' : '{{ constant('ROOT_URI') }}/js/vendor/jquery') +
   '.js><\/script>')
   </script>
 
-  <script src="/js/foundation.min.js"></script>
+  <script src="{{ constant('ROOT_URI') }}/js/foundation.min.js"></script>
   <!--
 
   <script src="js/foundation/foundation.js"></script>
@@ -76,7 +80,7 @@
 
   -->
 
-  <script src="/js/fila0.js"></script>
+  <script src="{{ constant('ROOT_URI') }}/js/fila0.js"></script>
 
 </body>
 </html>
