@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="large-12 columns">
+        <h1>Edición de datos</h1>
+        <form action="{{ path('edituser') }}" method="post">
+            {{ form_widget(form) }}
+
+            <input type="submit" name="submit" />
+        </form>
+    </div>
+</div>
+{% endblock %}

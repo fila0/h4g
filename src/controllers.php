@@ -7,13 +7,12 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Fila0\Utils\Api;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\User\User;
+use Fila0\User\User;
 
 $app->match('/', function (Request $request) use ($app) {
 
     $data = array(
-        'name' => 'Your name',
-        'email' => 'Your email',
+
     );
 
     $form = $app['form.factory']->createBuilder('form', $data)
@@ -107,16 +106,15 @@ $app->get('/login', function(Request $request) use ($app) {
 
 $app->get('/{slug}/', function(Request $request, $slug) use ($app) {
 	$params = $request->query->all();
-	$api = new Api ($app, $slug, $params);	
+	$api = new Api ($app, $slug, $params);
 	if ($api->execute ()) return $app['twig']->render('api.html',$api->showResults());
-	else return $app['twig']->render('api.html',$api->showError());	
+	else return $app['twig']->render('api.html',$api->showError());
 })
 ->assert("slug", "isServerUp|insertDonation|getProjectDatas");
 
 $app->get('/dashboard', function(Request $request) use ($app) {
 
     $token = $app['security']->getToken();
-
     if (null !== $token) {
         $user = $token->getUser();
     }
@@ -124,11 +122,80 @@ $app->get('/dashboard', function(Request $request) use ($app) {
         return $app->redirect($app['url_generator']->generate('login_path'));
     }
 
-    var_dump($user->getData());die;
+    $userData = $user->getData();
+
+    if(!isset($userData['contactname']) || empty($userData['contactname'])) {
+        return $app->redirect($app['url_generator']->generate('edituser'));
+    }
 
     return $app['twig']->render('dashboard.html');
 })
 ->bind('dashboard');
+
+$app->match('/dashboard/edituser', function (Request $request) use ($app) {
+
+    $token = $app['security']->getToken();
+    if (null !== $token) {
+        $user = $token->getUser();
+    }
+    else {
+        return $app->redirect($app['url_generator']->generate('login_path'));
+    }
+
+    $userData = $user->getData();
+    $data = array(
+        'contactname' => $userData['contactname'],
+        'url' => $userData['url'],
+        'phone' => $userData['phone'],
+        'cif' => $userData['cif'],
+    );
+
+    $form = $app['form.factory']->createBuilder('form', $data)
+        ->add('contactname', 'text', array(
+            'required' => true,
+            'constraints' => array(new Assert\NotBlank())
+        ))
+        ->add('url', 'url', array(
+            'required' => true,
+            'constraints' => array(new Assert\NotBlank(), new Assert\Url())
+        ))
+        ->add('phone', 'text', array(
+            'required' => true,
+            'constraints' => array(new Assert\NotBlank())
+        ))
+        ->add('cif', 'text', array(
+            'required' => true,
+            'constraints' => array(new Assert\NotBlank())
+        ))
+        ->getForm();
+
+    if ('POST' == $request->getMethod()) {
+        $form->bind($request);
+
+        if ($form->isValid()) {
+            $formData = $form->getData();
+            $formData['id'] = $userData['id'];
+
+            $updateSql = "UPDATE `users` SET
+                `contactname` = :contactname,
+                `phone` = :phone,
+                `url` = :url,
+                `cif` = :cif
+            WHERE
+                `id` = :id
+            ;";
+            $app['db']->executeUpdate($updateSql, $formData);
+
+            // redirect somewhere
+            return $app->redirect($app['url_generator']->generate('dashboard'));
+        }
+    }
+
+    // display the form
+    return $app['twig']->render('edituser.html', array('form' => $form->createView()));
+})
+->bind('edituser')
+;
 
 $app->error(function (\Exception $e, $code) use ($app) {
     if ($app['debug']) {
