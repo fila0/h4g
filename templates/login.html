@@ -1,6 +1,15 @@
-<form action="{{ path('dashboard_login_check') }}" method="post">
-    {{ error }}
-    <input type="text" name="_username" value="{{ last_username }}" />
-    <input type="password" name="_password" value="" />
-    <input type="submit" />
-</form>
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="large-12 columns">
+        <form action="{{ path('dashboard_login_check') }}" method="post">
+            {{ error }}
+            <input type="text" name="_username" value="{{ last_username }}" />
+            <input type="password" name="_password" value="" />
+            <input type="submit" />
+        </form>
+    </div>
+</div>
+{% endblock %}
+

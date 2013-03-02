@@ -1,23 +1,83 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>{% block title '' %} - My Silex Application</title>
+<!--[if IE 8]>               <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 
-        <link href="{{ app.request.basepath }}/css/main.css" rel="stylesheet" type="text/css" />
+<head>
+    <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{% block title 'Fila0 API' %}</title>
 
-        <script type="text/javascript">
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
-            _gaq.push(['_trackPageview']);
+  <link rel="stylesheet" href="/css/normalize.css" />
 
-            (function() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-        </script>
-    </head>
-    <body>
-        {% block content %}{% endblock %}
-    </body>
+  <link rel="stylesheet" href="/css/foundation.css" />
+
+
+  <script src="/js/vendor/custom.modernizr.js"></script>
+
+</head>
+<body>
+
+    <header>
+        <div class="row">
+            <div class="large-12 columns">
+                <h1>Fila0</h1>
+                <p>HackForGood</p>
+                <hr />
+            </div>
+        </div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <div class="row">
+            <div class="large-12 columns">
+                <p>Footer!!</p>
+            </div>
+        </div>
+    </footer>
+
+  <script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? '/js/vendor/zepto' : '/js/vendor/jquery') +
+  '.js><\/script>')
+  </script>
+
+  <script src="/js/foundation.min.js"></script>
+  <!--
+
+  <script src="js/foundation/foundation.js"></script>
+
+  <script src="js/foundation/foundation.alerts.js"></script>
+
+  <script src="js/foundation/foundation.clearing.js"></script>
+
+  <script src="js/foundation/foundation.cookie.js"></script>
+
+  <script src="js/foundation/foundation.dropdown.js"></script>
+
+  <script src="js/foundation/foundation.forms.js"></script>
+
+  <script src="js/foundation/foundation.joyride.js"></script>
+
+  <script src="js/foundation/foundation.magellan.js"></script>
+
+  <script src="js/foundation/foundation.orbit.js"></script>
+
+  <script src="js/foundation/foundation.placeholder.js"></script>
+
+  <script src="js/foundation/foundation.reveal.js"></script>
+
+  <script src="js/foundation/foundation.section.js"></script>
+
+  <script src="js/foundation/foundation.tooltips.js"></script>
+
+  <script src="js/foundation/foundation.topbar.js"></script>
+
+  -->
+
+  <script src="/js/fila0.js"></script>
+
+</body>
 </html>
+
