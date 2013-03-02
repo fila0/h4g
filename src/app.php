@@ -31,7 +31,8 @@ $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
     'security.firewalls' => array(
         'admin' => array(
-            'pattern' => '^/dashboard',
+            'anonymous' => true,
+            'pattern' => '.*',
             'form' => array('login_path' => '/login', 'check_path' => '/dashboard/login_check'),
             'logout' => array('logout_path' => '/dashboard/logout'),
             'users' => $app->share(function () use ($app) {

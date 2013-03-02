@@ -29,17 +29,20 @@
 
     {% block content %}{% endblock %}
 
-    <footer id="footer">
-        <div class="row">
-            <div class="large-12 columns">
-                <form action="{{ path('dashboard_login_check') }}" method="post">
-                    <input type="text" name="_username" value="" />
-                    <input type="password" name="_password" value="" />
-                    <input type="submit" />
-                </form>
+    {% if not is_granted('ROLE_USER') %}
+        <footer id="footer">
+            <div class="row">
+                <div class="large-12 columns">
+                    <form action="{{ path('dashboard_login_check') }}" method="post">
+                        Acceso Usuarios
+                        <input  type="text" class="inline" name="_username" value="" />
+                        <input type="password" class="inline" name="_password" value="" />
+                        <input type="submit" />
+                    </form>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    {% endif %}
 
   <script>
   document.write('<script src=' +
