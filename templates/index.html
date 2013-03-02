@@ -30,23 +30,26 @@
 </div>
 <div class="row">
     <div class="large-4 columns">
-        <div class="panel">
+        <div class="panel what">
+            <img class="deco" src="{{ constant('ROOT_URI') }}/img/icon_QUE.png" />
             <h3>¿Qué es?</h3>
             <p>Es un plugin gratuito para tu tienda online que permite a tus usuarios realizar una donación cuando compran</p>
         </div>
     </div>
     <div class="large-4 columns">
         <div class="panel where">
+            <img class="deco" src="{{ constant('ROOT_URI') }}/img/icon_DONDE.png" />
             <h3>¿Dónde?</h3>
             <p class="center"><img src="{{ constant('ROOT_URI') }}/img/logo_wordpress.png" /> <img src="{{ constant('ROOT_URI') }}/img/logo_magento.png" /> <img src="{{ constant('ROOT_URI') }}/img/logo_joomla.png" /></p>
             <p>Se integra en cualquier plataforma de e-commerce</p>
         </div>
     </div>
     <div class="large-4 columns">
-        <div class="panel">
+        <div class="panel solicitar">
+            <img class="deco" src="{{ constant('ROOT_URI') }}/img/icon_SOLICITAR.png" />
+            <h3>Solicitar</h3>
             <form action="{{ path('homepage') }}" method="post">
                 {{ form_widget(form) }}
-
                 <input type="submit" name="submit" />
             </form>
         </div>
