@@ -10,17 +10,16 @@
 			URL: {{ user.url }}<br />
 			APIKEY: {{ user.api_key }}<br />
 			APISECRET: {{ user.api_secret }}<br />
-			PROYECTO ACTUAL: {{ project.name }}<br />
 		</div>
 	</div>
 </div>
 <div class="bluebg">
 	<div class="row ">
-		<div class="large-2 offset-1 columns white"><a href="/dashboard/edituser"><img src="/img/icon_CUENTA.png" alt="Ayuda"> Configuración Cliente</a></div>
-		<div class="large-2 columns white"><a href="/dashboard/changeproject"><img src="/img/icon_PROYECTO.png" alt="Cambiar proyecto"> Cambiar proyecto</a></div>
-		<div class="large-2 columns white"><a href="/dashboard"><img src="/img/icon_ESTADISTICAS.png" alt="Estadísticas"> Estadísticas</a></div>
-		<div class="large-2 columns white"><a href="/ayuda"><img src="/img/icon_AYUDA.png" alt="Ayuda"> Ayuda</a></a></div>
-		<div class="large-2 columns white"><a href="/dashboard/logout"><img src="/img/icon_SALIR.png" alt="Ayuda"> Salida</a></div>
+		<div class="large-2 offset-1 columns white"><a href="/dashboard/edituser"><img src="{{ constant('ROOT_URI') }}/img/icon_CUENTA.png" alt="Ayuda"> Configuración Cliente</a></div>
+		<div class="large-2 columns white"><a href="/dashboard/changeproject"><img src="{{ constant('ROOT_URI') }}/img/icon_PROYECTO.png" alt="Cambiar proyecto"> Cambiar proyecto</a></div>
+		<div class="large-2 columns white"><a href="/dashboard"><img src="{{ constant('ROOT_URI') }}/img/icon_ESTADISTICAS.png" alt="Estadísticas"> Estadísticas</a></div>
+		<div class="large-2 columns white"><a href="/ayuda"><img src="{{ constant('ROOT_URI') }}/img/icon_AYUDA.png" alt="Ayuda"> Ayuda</a></a></div>
+		<div class="large-2 columns white"><a href="/dashboard/logout"><img src="{{ constant('ROOT_URI') }}/img/icon_SALIR.png" alt="Ayuda"> Salida</a></div>
 	</div>
 </div>
 
