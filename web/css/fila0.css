@@ -73,3 +73,24 @@
 #footer {
     background: #EB6F79;
 }
+.bluebg {
+	background-color: #89ccc6;
+	text-align: center;
+	
+}
+.bluebg div {
+	color: #ffffff;
+}
+
+.bluebg div a {
+	color: #ffffff;
+}
+.bluebg div img {
+
+	float: left;
+}
+
+div.white a {
+	color: #000000;
+}
+
