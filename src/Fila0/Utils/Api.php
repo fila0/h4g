@@ -11,6 +11,7 @@ class Api {
 	private $debug;
 	private $import;
 	private $currency;
+	private $transactionid;
 	private $user;
 	private $project;
 	private $results;
@@ -24,6 +25,7 @@ class Api {
 		$this->format = $params['format'];
 		if (isset($params['debug']) && 1 == $params['debug']) $this->debug = true;
 		else $this->debug = false;
+		$this->transactionid = $params['transactionid'];
 		$this->import = $params['import'];
 		$this->currency = $params['currency'];
 		$this->user = 0;
@@ -53,19 +55,21 @@ class Api {
 				if (isset($project[0]['project_id']) && $project[0]['project_id'] > 0) {
 					$this->project = $project[0]['project_id'];
 					//Validamos los datos básicos
-					if ($this->import > 0 && $this->currency != '') {
+					if ($this->import > 0 && $this->currency != '' && $this->transactionid != '') {
 						$sql = "INSERT INTO `filacero`.`donations` (
 						`id`,
 						`import` ,
 						`currency` ,
+						`transactionid` ,
 						`user_id` ,
 						`project_id` ,
 						`date_stored`
 						)
 						VALUES (
-						NULL , '".$this->import."', '".$this->currency."', '".$this->user."', '".$this->project."',
+						NULL ,  '".$this->import."', '".$this->currency."', '".$this->transactionid."', '".$this->user."', '".$this->project."',
 						CURRENT_TIMESTAMP
 						)";
+						//echo $sql;
 						if (!$this->debug) $project = $this->app['db']->executeUpdate($sql);		
 						$this->results = array ("status" => "OK", "datas" => "Donation accepted");
 						return true;
