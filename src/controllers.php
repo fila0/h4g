@@ -107,7 +107,7 @@ $app->get('/login', function(Request $request) use ($app) {
     ));
 });
 
-$app->get('/{slug}/', function(Request $request, $slug) use ($app) {
+$app->match('/{slug}/', function(Request $request, $slug) use ($app) {
 	$params = $request->query->all();
 	$api = new Api ($app, $slug, $params);
 	if ($api->execute ()) return $app['twig']->render('api.html',$api->showResults());
