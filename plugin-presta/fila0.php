@@ -52,12 +52,35 @@ class Fila0 extends Module {
 
         parent::install();
 
-        if (!$this->registerHook('footer'))
+        if (!$this->registerHook('footer') || !$this->registerHook('shoppingCart') || !$this->registerHook('shoppingCartExtra'))
 
         return false;
     }
 
     public function hookFooter() {
+
+        return '<div class="block&quot"<h4>Fila0 API Key'. Configuration::get($this->name.'_api_key') . '</h4><br />'
+                    .'<h4>Secreto Compartido'.Configuration::get($this->name.'_secreto_compartido') .'</div>';
+    }
+
+    public function hookShoppingCart() {
+
+        $html = ""
+                        ."<table width=\"100%\" border=\"0\" style=\"border:1px solid black;\">"
+                        ."<tr>"
+                        ."<td width=\"25%\"><img src=\"https://www.filacero.org/images/header/es/logo1.jpg\" alt=\"Fila0\" height=\"90\" /></td>"
+                        ."<td width=\"85%\"><input type=\"checkbox\" name=\"\" value=\"\" /> DONA CABRÓN"
+                        ."</tr>"
+                        ."</table>"
+                        ."<p></p>";
+
+        return $html;
+
+        //return '<div class="block&quot"<h4>Fila0 API Key'. Configuration::get($this->name.'_api_key') . '</h4><br />'
+        //            .'<h4>Secreto Compartido'.Configuration::get($this->name.'_secreto_compartido') .'</div>';
+    }
+
+    public function hookShoppingCartExtra() {
 
         return '<div class="block&quot"<h4>Fila0 API Key'. Configuration::get($this->name.'_api_key') . '</h4><br />'
                     .'<h4>Secreto Compartido'.Configuration::get($this->name.'_secreto_compartido') .'</div>';
