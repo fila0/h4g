@@ -105,6 +105,18 @@ $app->get('/login', function(Request $request) use ($app) {
 });
 
 $app->get('/dashboard', function(Request $request) use ($app) {
+
+    $token = $app['security']->getToken();
+
+    if (null !== $token) {
+        $user = $token->getUser();
+    }
+    else {
+        return $app->redirect($app['url_generator']->generate('login_path'));
+    }
+
+    var_dump($user->getData());die;
+
     return $app['twig']->render('dashboard.html');
 })
 ->bind('dashboard');
