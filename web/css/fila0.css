@@ -128,7 +128,7 @@ ul.tips {
 .bluebg {
 	background-color: #89ccc6;
 	text-align: center;
-	
+
 }
 .bluebg div {
 	color: #ffffff;
@@ -140,6 +140,12 @@ ul.tips {
 .bluebg div img {
 
 	float: left;
+}
+
+.bluebg.top {
+    text-align: left;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 div.white a {
