@@ -1,13 +1,27 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="row">
-    <div class="large-12 columns">
-        <form action="{{ path('homepage') }}" method="post">
-            {{ form_widget(form) }}
-
-            <input type="submit" name="submit" />
-        </form>
-    </div>
-</div>
+{%if donations is defined %}
+	<h2>Donaciones</h2>
+	<table>
+		<thead>
+			<tr>
+				<td>Importe</td>
+				<td>Moneda</td>
+				<td>Fecha de donación</td>
+				<td>Nombre Projecto</td>
+				<td>Nombre ONG</td>
+			</tr>
+		</thead>
+	{% for donation in donations %}
+		<tr>
+			<td>{{ donation.import }}</td>
+			<td>{{ donation.currency }}</td>
+			<td>{{ donation.date_stored }}</td>
+			<td>{{ donation.name }}</td>
+			<td>{{ donation.ongname }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+{% endif %}
 {% endblock %}
