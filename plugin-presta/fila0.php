@@ -52,7 +52,7 @@ class Fila0 extends Module {
 
         parent::install();
 
-        if (!$this->registerHook('footer') || !$this->registerHook('shoppingCart') || !$this->registerHook('shoppingCartExtra'))
+        if (!$this->registerHook('DisplayOrderConfirmation') || !$this->registerHook('footer') || !$this->registerHook('shoppingCart') || !$this->registerHook('shoppingCartExtra'))
 
         return false;
     }
@@ -64,13 +64,16 @@ class Fila0 extends Module {
         $static_token = Tools::getToken(false);
 
         $html = ""
-                        ."<table width=\"100%\" border=\"0\" style=\"border:1px solid black;\">"
+                        ."<div id=\"tablaDonacion\"><table width=\"100%\" border=\"0\" style=\"border:1px solid black;\">"
                         ."<tr>"
-                        ."<td width=\"25%\"><img src=\"https://www.filacero.org/images/header/es/logo1.jpg\" alt=\"Fila0\" height=\"90\" /></td>"
-                        ."<td width=\"85%\"><input type=\"checkbox\" name=\"\" value=\"\" onClick=\"enviarDonacion();\"/> DONA CABRÓN TOKEN "
+                        ."<td width=\"5%\"><center><img src=\"/prestashop/img/p/3/2/32-small_default.jpg\"  style=\"margin-left: 10px;\" alt=\"Fila0\" /></td>"
+                        ."<td width=\"5%\"><center><input type=\"checkbox\" id=\"checkDonacion\" value=\"\" /></td>"
+                        ."<td width=\"90%\" style=\"font-size: 13px;\">Quiero donar <b>1€</b> al proyecto <b>Lucha contra el VIH</b> en Zimbabwe de <b>Médicos sin Fronteras</b>.<br />"
+                        ."<div style=\"padding-top: 5px;\">Más info en <a href=\"http://www.filacero.org\" target=\"_blank\">http://www.filacero.org</a></div></td>"
                         ."</tr>"
                         ."</table>"
                         ."<p></p>"
+                        ."</div>"
                         ."<script>"
                         ."function enviarDonacion() {"
                             ."$.post(\"index.php\", {"
@@ -81,12 +84,29 @@ class Fila0 extends Module {
                                 ."id_product: \"12\", "
                                 ."token: \"".$static_token."\""
                             ."},function() {"
+                                //."$('#tablaDonacion').hide();"
                                 ."window.location.reload();"
                             ."});"
                         ."}"
+                        ."</script>"
+                        ."<script>"
+                            ."$('#checkDonacion').bind('change', function () {"
+                                ."if ($(this).is(':checked'))"
+                                    ."enviarDonacion();"
+                                ."else"
+                                    ."enviarDonacion();"
+                            ."});"
                         ."</script>";
 
         return $html;
+
+    }
+
+    public function hookDisplayOrderConfirmation() {
+
+        $html = "HAS PAGADO";
+
+        return $hola;
 
     }
 
