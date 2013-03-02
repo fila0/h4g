@@ -135,7 +135,6 @@ $app->get('/dashboard', function(Request $request) use ($app) {
 	}
 	else {
 		$sql = "SELECT d.import, d.currency, d.transactionid, d.date_stored, p.name, p.ongname FROM donations d INNER JOIN projects p ON d.project_id = p.id WHERE d.user_id = ".$userData['id']."";
-		echo $sql;
 	}
 	$datas['donations'] = $app['db']->fetchAll($sql);
 	//print_r ($datas['donations']);
