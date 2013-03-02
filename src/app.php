@@ -5,11 +5,17 @@ use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\ServiceControllerServiceProvider;
+use Silex\Provider\FormServiceProvider;
+use Silex\Provider\TranslationServiceProvider;
 use Fila0\User\UserProvider;
 
 $app = new Application();
+$app->register(new TranslationServiceProvider(), array(
+    'locale_fallback' => 'es',
+));
 $app->register(new UrlGeneratorServiceProvider());
 $app->register(new ValidatorServiceProvider());
+$app->register(new FormServiceProvider());
 $app->register(new ServiceControllerServiceProvider());
 $app->register(new TwigServiceProvider(), array(
     'twig.path'    => array(__DIR__.'/../templates'),
@@ -28,10 +34,9 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
             'pattern' => '^/dashboard',
             'form' => array('login_path' => '/login', 'check_path' => '/dashboard/login_check'),
             'logout' => array('logout_path' => '/dashboard/logout'),
-            'users' => array(
-                // raw password is foo
-                'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='),
-            ),
+            'users' => $app->share(function () use ($app) {
+                return new UserProvider($app['db']);
+            }),
         ),
     ),
     'security.access_rules' => array(
@@ -39,9 +44,5 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
         array('^.*$', 'ROLE_USER'),
     )
 ));
-
-$app['users'] = $app->share(function () use ($app) {
-    return new UserProvider($app['db']);
-});
 
 return $app;
