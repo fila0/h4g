@@ -128,7 +128,19 @@ $app->get('/dashboard', function(Request $request) use ($app) {
         return $app->redirect($app['url_generator']->generate('edituser'));
     }
 
-    return $app['twig']->render('dashboard.html');
+		
+	//chequeamos los permisos del usuarios para mostrar unos dtaos u otros
+    	if ($app['security']->isGranted('ROLE_ADMIN')) {
+		$sql = "SELECT d.import, d.currency, d.date_stored, p.name, p.ongname FROM donations d INNER JOIN projects p ON d.project_id = p.id ";
+	}
+	else {
+		$sql = "SELECT d.import, d.currency, d.date_stored, p.name, p.ongname FROM donations d INNER JOIN projects p ON d.project_id = p.id WHERE d.user_id = ".$userData['id']."";
+		echo $sql;
+	}
+	$datas['donations'] = $app['db']->fetchAll($sql);
+	print_r ($datas['donations']);
+
+    return $app['twig']->render('dashboard.html', $datas);
 })
 ->bind('dashboard');
 
