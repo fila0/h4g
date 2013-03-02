@@ -25,9 +25,12 @@ class Api {
 		$this->format = $params['format'];
 		if (isset($params['debug']) && 1 == $params['debug']) $this->debug = true;
 		else $this->debug = false;
-		$this->transactionid = $params['transactionid'];
-		$this->import = $params['import'];
-		$this->currency = $params['currency'];
+		if (isset($params['transactionid'])) $this->transactionid = $params['transactionid'];
+		else $this->transactionid == '';
+		if (isset($params['import'])) $this->import = $params['import'];
+		else $this->transactionid = 0;
+		if (isset($params['currency'])) $this->currency = $params['currency'];
+		else $this->currency = '';
 		$this->user = 0;
 		$this->project = 0;
 		$this->results = array(); //array("status" => "ok", "datas" => "");
