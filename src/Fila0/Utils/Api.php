@@ -54,7 +54,7 @@ class Api {
 				return true;
 			}
 			else if ($this->method == 'insertDonation') {
-				$project = $this->app['db']->fetchAll("SELECT project_id FROM `projects_users` WHERE `id` = ".$this->user." AND `status` = 'current' LIMIT 0,1");
+				$project = $this->app['db']->fetchAll("SELECT project_id FROM `projects_users` WHERE `user_id` = ".$this->user." AND `status` = 'current' LIMIT 0,1");
 				if (isset($project[0]['project_id']) && $project[0]['project_id'] > 0) {
 					$this->project = $project[0]['project_id'];
 					//Validamos los datos básicos

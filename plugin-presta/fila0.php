@@ -52,7 +52,7 @@ class Fila0 extends Module {
 
         parent::install();
 
-        if (!$this->registerHook('DisplayOrderConfirmation') || !$this->registerHook('footer') || !$this->registerHook('shoppingCart') || !$this->registerHook('shoppingCartExtra'))
+        if (!$this->registerHook('orderConfirmation') || !$this->registerHook('footer') || !$this->registerHook('shoppingCart') || !$this->registerHook('shoppingCartExtra'))
 
         return false;
     }
@@ -102,11 +102,39 @@ class Fila0 extends Module {
 
     }
 
-    public function hookDisplayOrderConfirmation() {
+    public function hookOrderConfirmation() {
 
-        $html = "HAS PAGADO";
+        $api_key_bd = Configuration::get($this->name.'_api_key', $id_lang = NULL);
+        $secreto_compartido_bd = Configuration::get($this->name.'_secreto_compartido', $id_lang = NULL);
+        $transaction_id = "7";
 
-        return $hola;
+        $id_cart = intval(Tools::getValue('id_cart', 0));
+        $id_module = intval(Tools::getValue('id_module', 0));
+        $id_order = Order::getOrderByCartId(intval($id_cart));
+
+        //$url = "http://localhost:8888/filacero/web/insertDonation/?apikey=".$api_key_bd."&apisecret=".$secreto_compartido_bd."&format=json&import=1&currency=eur&transactionid=".$id_order;
+
+        $jquery = "<script>"
+            ."$(document).ready(function() {"
+                ."enviarDonacion();"
+            ."});"
+            ."function enviarDonacion() {"
+                ."$.post(\"http://localhost:8888/filacero/web/insertDonation/\", {"
+                    ."apikey: \"".$api_key_bd."\", "
+                    ."apisecret: \"".$secreto_compartido_bd."\", "
+                    ."format: \"json\", "
+                    ."import: \"1\", "
+                    ."currency: \"eur\", "
+                    ."transactionid: \"".$id_order."\""
+                ."},function() {"
+                    //."alert('¡Donado!');"
+                ."});"
+            ."}"
+        ."</script>";
+
+        $html = $jquery;
+
+        return $html;
 
     }
 

@@ -107,7 +107,7 @@ $app->get('/login', function(Request $request) use ($app) {
     ));
 });
 
-$app->get('/{slug}/', function(Request $request, $slug) use ($app) {
+$app->match('/{slug}/', function(Request $request, $slug) use ($app) {
 	$params = $request->query->all();
 	$api = new Api ($app, $slug, $params);
 	if ($api->execute ()) return $app['twig']->render('api.html',$api->showResults());
@@ -130,8 +130,13 @@ $app->get('/dashboard', function(Request $request) use ($app) {
     if(!isset($userData['contactname']) || empty($userData['contactname'])) {
         return $app->redirect($app['url_generator']->generate('edituser'));
     }
+	//print_r ($userData);	
+	$datas['user'] = $userData;
 
-
+	$sql = "SELECT p.* FROM projects p INNER JOIN projects_users pu ON pu.project_id = p.id AND pu.user_id = ".$userData['id']." AND status = 'current' ";
+	$project = $app['db']->fetchAll($sql);
+	$datas['project'] = $project[0];
+	//print_r ($datas);
 	//chequeamos los permisos del usuarios para mostrar unos dtaos u otros
     	if ($app['security']->isGranted('ROLE_ADMIN')) {
 		$sql = "SELECT d.import, d.currency, d.transactionid, d.date_stored, p.name, p.ongname FROM donations d INNER JOIN projects p ON d.project_id = p.id ";
