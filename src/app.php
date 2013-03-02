@@ -40,8 +40,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
         ),
     ),
     'security.access_rules' => array(
-        array('^/dashboard', 'ROLE_ADMIN'), // , 'https'),
-        array('^.*$', 'ROLE_USER'),
+        array('^/dashboard', array('ROLE_ADMIN', 'ROLE_USER')), // , 'https'),
     )
 ));
 
