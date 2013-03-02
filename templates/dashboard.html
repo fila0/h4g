@@ -2,13 +2,24 @@
 
 {% block content %}
 <div class="row bluebg">
-	<div class="large-4 offset-2 columns ">{{ user.username }}</div>
+	<div class="large-4 offset-by-two columns ">{{ user.username }}</div>
 	<div class="large-4 columns">PROYECTO ACTUAL</div>
 </div>
 <div class="row bluebg">
 	<div class="large-4 offset-2 columns"><a href="{{ user.url }}">{{ user.url }}</a></div>
 	<div class="large-4 columns"><a href="{{ project.url }}">{{ project.name }} - {{ project.ongname }}</a></div>
 </div>	
+
+
+<div class="row bluebg">
+	<div class="large-4 offset-2 columns">APIKEY</div>
+	<div class="large-4 columns">APISECRET</div>
+</div>	
+<div class="row bluebg">
+	<div class="large-4 offset-2 columns">{{ user.api_key }}</div>
+	<div class="large-4 columns">{{ user.api_secret }}</div>
+</div>	
+
 <div class="row bluebg">
 	<div class="large-2 offset-1 columns white"><a href="/dashboard/edituser"><img src="/img/icon_CUENTA.png" alt="Ayuda"> Configuración Cliente</a></div>
 	<div class="large-2 columns white"><a href="/dashboard/changeproject"><img src="/img/icon_PROYECTO.png" alt="Cambiar proyecto"> Cambiar proyecto</a></div>

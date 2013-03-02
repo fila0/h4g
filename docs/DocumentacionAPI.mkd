@@ -1,0 +1,16 @@
+<u><big>Documentación Fila0 API</big></u>
+<u>Métodos</u>
+<ul>
+<li>isServerUp</li>
+<li>insertDonation</li>
+<li>getProjectDatas</li>
+</ul>
+
+
+
+<u>Códigos de error</u>
+<ul>
+<li><u>001:</u> ApiKey o ApiSecret incorrectos.</li>
+<li><u>002:</u> El usuario actual no tiene un proyecto al asociado.</li>
+<li><u>003:</u> Datos básicos (import, currency, transactionid) erroneos o incompletos.</li>
+</ul>
