@@ -19,12 +19,15 @@ $app->match('/', function (Request $request) use ($app) {
         ->add('email', 'email', array(
             'constraints' => array(new Assert\NotBlank(), new Assert\Email())
         ))
-        ->add('password', 'repeated', array(
-            'first_name'  => 'password',
-            'second_name' => 'confirm',
-            'type'        => 'password',
+        ->add('password', 'password', array(
             'constraints' => array(new Assert\NotBlank())
         ))
+        // ->add('password', 'repeated', array(
+        //     'first_name'  => 'password',
+        //     'second_name' => 'confirm',
+        //     'type'        => 'password',
+        //     'constraints' => array(new Assert\NotBlank())
+        // ))
         // ->add('name', 'text', array(
         //     'required' => false
         // ))
@@ -128,7 +131,7 @@ $app->get('/dashboard', function(Request $request) use ($app) {
         return $app->redirect($app['url_generator']->generate('edituser'));
     }
 
-		
+
 	//chequeamos los permisos del usuarios para mostrar unos dtaos u otros
     	if ($app['security']->isGranted('ROLE_ADMIN')) {
 		$sql = "SELECT d.import, d.currency, d.transactionid, d.date_stored, p.name, p.ongname FROM donations d INNER JOIN projects p ON d.project_id = p.id ";
