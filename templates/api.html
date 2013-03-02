@@ -1,0 +1,13 @@
+{% if format == 'json' %}
+	{{json}}
+{% elseif format == 'xml' %}
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+	<status>{{ status }}</status>
+	{% if datas is defined %}<datas>{{ datas }}</datas>{% endif %}
+	{% if code is defined %}<code>{{ code }}</code>{% endif %}
+</xml>
+{% endif %}
+
+
+

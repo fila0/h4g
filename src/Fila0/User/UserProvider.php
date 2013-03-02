@@ -4,7 +4,7 @@ namespace Fila0\User;
 
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\User;
+use Fila0\User\User;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Doctrine\DBAL\Connection;
@@ -28,7 +28,10 @@ class UserProvider implements UserProviderInterface
 
         $roles = unserialize($user['roles']);
 
-        return new User($user['username'], $user['password'], $roles, true, true, true, true);
+        $userEntity = new User($user['username'], $user['password'], $roles, true, true, true, true);
+        $userEntity->setData($user);
+
+        return $userEntity;
     }
 
     public function refreshUser(UserInterface $user)
@@ -42,6 +45,6 @@ class UserProvider implements UserProviderInterface
 
     public function supportsClass($class)
     {
-        return $class === 'Symfony\Component\Security\Core\User\User';
+        return $class === 'Fila0\User\User';
     }
 }

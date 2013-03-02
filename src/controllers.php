@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Fila0\Utils\Api;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\User;
 
@@ -104,7 +105,27 @@ $app->get('/login', function(Request $request) use ($app) {
     ));
 });
 
+$app->get('/{slug}/', function(Request $request, $slug) use ($app) {
+	$params = $request->query->all();
+	$api = new Api ($app, $slug, $params);	
+	if ($api->execute ()) return $app['twig']->render('api.html',$api->showResults());
+	else return $app['twig']->render('api.html',$api->showError());	
+})
+->assert("slug", "isServerUp|insertDonation|getProjectDatas");
+
 $app->get('/dashboard', function(Request $request) use ($app) {
+
+    $token = $app['security']->getToken();
+
+    if (null !== $token) {
+        $user = $token->getUser();
+    }
+    else {
+        return $app->redirect($app['url_generator']->generate('login_path'));
+    }
+
+    var_dump($user->getData());die;
+
     return $app['twig']->render('dashboard.html');
 })
 ->bind('dashboard');

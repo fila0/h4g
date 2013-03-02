@@ -6,3 +6,6 @@ composer.lock
 .tags
 .tags_sorted_by_file
 .gemtags
+*~
+composer.phar
+web/dbadmin
