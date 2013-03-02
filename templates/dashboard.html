@@ -6,20 +6,22 @@
 	<table>
 		<thead>
 			<tr>
+
+				<td>Fecha de donación</td>
+				<td>Código transacción</td>				<td>Nombre Projecto</td>
+				<td>Nombre ONG</td>
 				<td>Importe</td>
 				<td>Moneda</td>
-				<td>Fecha de donación</td>
-				<td>Nombre Projecto</td>
-				<td>Nombre ONG</td>
 			</tr>
 		</thead>
 	{% for donation in donations %}
 		<tr>
-			<td>{{ donation.import }}</td>
-			<td>{{ donation.currency }}</td>
 			<td>{{ donation.date_stored }}</td>
+			<td>{{ donation.transactionid }}</td>
 			<td>{{ donation.name }}</td>
 			<td>{{ donation.ongname }}</td>
+			<td>{{ donation.import }}</td>
+			<td>{{ donation.currency }}</td>
 		</tr>
 	{% endfor %}
 	</table>
