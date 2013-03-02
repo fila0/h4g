@@ -1,0 +1,8 @@
+/vendor/
+/cache/
+/logs/
+composer.lock
+/config/parameters.php
+.tags
+.tags_sorted_by_file
+.gemtags
