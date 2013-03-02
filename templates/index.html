@@ -1,13 +1,87 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<div class="slider">
+    <ul data-orbit>
+      <li>
+        <img src="/img/imagen_loreak_1.jpg" />
+      </li>
+      <li>
+        <img src="/img/imagen_loreak_2.jpg" />
+      </li>
+      <li>
+        <img src="/img/imagen_loreak_3.jpg" />
+      </li>
+    </ul>
+</div>
+<div class="slogan">
+    <div class="row">
+        <div class="large-12 columns">
+            <h2>Tu tienda online, un poco más social</h2>
+        </div>
+    </div>
+</div>
+<div class="img-explanation">
+    <div class="row">
+        <div class="large-12 columns">
+            <img src="/img/filacero_funcionamiento.png" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="large-4 columns">
+        <div class="panel">
+            <form action="{{ path('homepage') }}" method="post">
+                {{ form_widget(form) }}
+
+                <input type="submit" name="submit" />
+            </form>
+        </div>
+    </div>
+    <div class="large-4 columns">
+        <div class="panel">
+            <form action="{{ path('homepage') }}" method="post">
+                {{ form_widget(form) }}
+
+                <input type="submit" name="submit" />
+            </form>
+        </div>
+    </div>
+    <div class="large-4 columns">
+        <div class="panel">
+            <form action="{{ path('homepage') }}" method="post">
+                {{ form_widget(form) }}
+
+                <input type="submit" name="submit" />
+            </form>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="large-12 columns">
-        <form action="{{ path('homepage') }}" method="post">
-            {{ form_widget(form) }}
-
-            <input type="submit" name="submit" />
-        </form>
+        <ul class="tips no-bullet">
+            <li><img src="/img/icon_flecha.png" /> Tú eliges el proyecto social al que donan tus usuarios</li>
+            <li><img src="/img/icon_flecha.png" /> Ellos tienen la oportunidad de contribuir con un euro</li>
+            <li><img src="/img/icon_flecha.png" /> Nosotros comunicamos lo que hemos conseguido entre todos</li>
+        </ul>
+    </div>
+</div>
+<div class="row copy">
+    <div class="large-10 large-offset-1 columns">
+        <div class="row">
+            <div class="large-4 columns">
+                <h3>Un proyecto de </h3>
+                <img src="/img/logo_fundacionfilacero.png" alt="Fila Cero" />
+            </div>
+            <div class="large-4 columns">
+                <h3>Desarrollado por</h3>
+                <img src="/img/icon_EQUIPO.png" alt="Fila Cero" />
+            </div>
+            <div class="large-4 columns">
+                <h3>Durante</h3>
+                <img src="/img/logo_hackforgood.png" alt="Fila Cero" />
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

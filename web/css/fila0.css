@@ -1,0 +1,67 @@
+#header {
+    background: #EB6F79;
+    text-align: center;
+}
+
+#header h1 {
+    margin: 0;
+    text-align: center;
+    line-height: 1;
+}
+
+#header h1 img {
+    display: inline;
+    padding: 10px 0;
+}
+
+.slider {
+    position: relative;
+}
+
+.orbit-prev, .orbit-next, .orbit-slide-number {
+    display: none;
+}
+
+.orbit-bullets {
+    position: absolute;
+    top: 85%;
+    margin-left: 50%;
+    margin-bottom: 0;
+}
+
+.orbit-bullets li {
+    background: #fff;
+    border: #fff 2px solid;
+}
+.orbit-bullets li.active {
+    background: #EB6F79;
+}
+
+.slogan {
+    background:#89CCC5;
+    margin-bottom: 30px;
+}
+
+.slogan h2 {
+    color: white;
+    font-size: 13px;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.img-explanation img {
+    margin: 0 auto 30px;
+}
+
+.tips img {
+    display: inline;
+}
+.tips li {
+    font-size: 12px;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    text-align: center;
+}
