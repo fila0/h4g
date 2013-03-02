@@ -57,34 +57,50 @@ class Fila0 extends Module {
         return false;
     }
 
-    public function hookFooter() {
-
-        return '<div class="block&quot"<h4>Fila0 API Key'. Configuration::get($this->name.'_api_key') . '</h4><br />'
-                    .'<h4>Secreto Compartido'.Configuration::get($this->name.'_secreto_compartido') .'</div>';
-    }
-
     public function hookShoppingCart() {
+
+        $url = "http://localhost:8888/prestashop/index.php";
+
+        $static_token = Tools::getToken(false);
 
         $html = ""
                         ."<table width=\"100%\" border=\"0\" style=\"border:1px solid black;\">"
                         ."<tr>"
                         ."<td width=\"25%\"><img src=\"https://www.filacero.org/images/header/es/logo1.jpg\" alt=\"Fila0\" height=\"90\" /></td>"
-                        ."<td width=\"85%\"><input type=\"checkbox\" name=\"\" value=\"\" /> DONA CABRÓN"
+                        ."<td width=\"85%\"><input type=\"checkbox\" name=\"\" value=\"\" onClick=\"enviarDonacion();\"/> DONA CABRÓN TOKEN "
                         ."</tr>"
                         ."</table>"
-                        ."<p></p>";
+                        ."<p></p>"
+                        ."<script>"
+                        ."function enviarDonacion() {"
+                            ."$.post(\"index.php\", {"
+                                ."controller: \"cart\", "
+                                ."add: \"1\", "
+                                ."ajax: \"false\", "
+                                ."qty: \"1\", "
+                                ."id_product: \"12\", "
+                                ."token: \"".$static_token."\""
+                            ."},function() {"
+                                ."window.location.reload();"
+                            ."});"
+                        ."}"
+                        ."</script>";
 
         return $html;
 
-        //return '<div class="block&quot"<h4>Fila0 API Key'. Configuration::get($this->name.'_api_key') . '</h4><br />'
-        //            .'<h4>Secreto Compartido'.Configuration::get($this->name.'_secreto_compartido') .'</div>';
     }
 
-    public function hookShoppingCartExtra() {
+    /*public function hookFooter() {
 
         return '<div class="block&quot"<h4>Fila0 API Key'. Configuration::get($this->name.'_api_key') . '</h4><br />'
                     .'<h4>Secreto Compartido'.Configuration::get($this->name.'_secreto_compartido') .'</div>';
-    }
+    }*/
+
+    /*public function hookShoppingCartExtra() {
+
+        return '<div class="block&quot"<h4>Fila0 API Key'. Configuration::get($this->name.'_api_key') . '</h4><br />'
+                    .'<h4>Secreto Compartido'.Configuration::get($this->name.'_secreto_compartido') .'</div>';
+    }*/
 }
 
 ?>
