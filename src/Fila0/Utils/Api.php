@@ -22,10 +22,10 @@ class Api {
 		$this->apikey = $params['apikey'];
 		$this->apisecret = $params['apisecret'];
 		$this->format = $params['format'];
-		if (isset($params) && $params = 1) $this->debug = true;
+		if (isset($params['debug']) && 1 == $params['debug']) $this->debug = true;
 		else $this->debug = false;
 		$this->import = $params['import'];
-		
+		$this->currency = $params['currency'];
 		$this->user = 0;
 		$this->project = 0;
 		$this->results = array(); //array("status" => "ok", "datas" => "");
@@ -49,15 +49,31 @@ class Api {
 				return true;
 			}
 			else if ($this->method == 'insertDonation') {
-				echo "SELECT project_id FROM `projects_users` WHERE `id` = ".$this->user." AND `status` = 'current' LIMIT 0,1";
 				$project = $this->app['db']->fetchAll("SELECT project_id FROM `projects_users` WHERE `id` = ".$this->user." AND `status` = 'current' LIMIT 0,1");
-				if (isset($project[0]['id']) && $project[0]['id'] > 0) {
-					$this->project = $project[0]['id'];
+				if (isset($project[0]['project_id']) && $project[0]['project_id'] > 0) {
+					$this->project = $project[0]['project_id'];
 					//Validamos los datos básicos
-					
-
-
-
+					if ($this->import > 0 && $this->currency != '') {
+						$sql = "INSERT INTO `filacero`.`donations` (
+						`id`,
+						`import` ,
+						`currency` ,
+						`user_id` ,
+						`project_id` ,
+						`date_stored`
+						)
+						VALUES (
+						NULL , '".$this->import."', '".$this->currency."', '".$this->user."', '".$this->project."',
+						CURRENT_TIMESTAMP
+						)";
+						if (!$this->debug) $project = $this->app['db']->executeUpdate($sql);		
+						$this->results = array ("status" => "OK", "datas" => "Donation accepted");
+						return true;
+					}
+					else {
+					$this->error = array ("status" => "error", "code" => "003");
+					return false;
+				}
 					
 				}
 				else {
