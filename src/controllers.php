@@ -11,16 +11,33 @@ use Fila0\User\User;
 
 $app->match('/', function (Request $request) use ($app) {
 
+    $token = $app['security']->getToken();
+    if (null !== $token) {
+        $user = $token->getUser();
+        if('anon.' !== $user)
+            return $app->redirect($app['url_generator']->generate('dashboard'));
+    }
+
+    $token = $app['security']->getToken();
+    if (null !== $token) {
+        $user = $token->getUser();
+    }
+    else {
+        return $app->redirect($app['url_generator']->generate('login_path'));
+    }
+
     $data = array(
 
     );
 
     $form = $app['form.factory']->createBuilder('form', $data)
         ->add('email', 'email', array(
-            'constraints' => array(new Assert\NotBlank(), new Assert\Email())
+            'constraints' => array(new Assert\NotBlank(), new Assert\Email()),
+            'attr' => array('placeholder' => 'Email')
         ))
         ->add('password', 'password', array(
-            'constraints' => array(new Assert\NotBlank())
+            'constraints' => array(new Assert\NotBlank()),
+            'attr' => array('placeholder' => 'Password')
         ))
         // ->add('password', 'repeated', array(
         //     'first_name'  => 'password',
@@ -130,7 +147,7 @@ $app->get('/dashboard', function(Request $request) use ($app) {
     if(!isset($userData['contactname']) || empty($userData['contactname'])) {
         return $app->redirect($app['url_generator']->generate('edituser'));
     }
-	//print_r ($userData);	
+	//print_r ($userData);
 	$datas['user'] = $userData;
 
 	$sql = "SELECT p.* FROM projects p INNER JOIN projects_users pu ON pu.project_id = p.id AND pu.user_id = ".$userData['id']." AND status = 'current' ";
